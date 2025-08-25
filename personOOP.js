@@ -22,23 +22,37 @@ Orc.prototype.hit = function() {
   console.log(`${this.name} наносит удар ${this.weapon}`);
 }
 
-Orc.prototype.spell = function() {
-  console.log(`${this.name} применяет заклинание: Огненный шар!`);
-}
-
-Orc.prototype.castSpell = function() {
-  const spells = ['Огненный шар', 'Молния', 'Исцеление', 'Ледяной шип'];
-  const randomSpell = spells[Math.floor(Math.random() * spells.length)];
-  console.log(`${this.name} создает новое заклинание: ${randomSpell}`);
-  return randomSpell
-}
-
 const man = new Character('Человек', 'Анатолий', 'Общий');
 man.speak()
 console.log(man)
 
 const orc1 = new Orc('Орк', 'Маргог-Гробанак', 'Орсимерский', 'Молот');
 orc1.hit()
-orc1.spell()
-orc1.castSpell()
 console.log(orc1)
+
+const Elf = function(race, name, language, spells) {
+
+  Character.call(this, race, name, language);
+
+  this.spells = spells
+}
+
+Elf.prototype = Object.create(Character.prototype);
+Elf.prototype.constructor = Elf;
+
+Elf.prototype.spell = function() {
+  console.log(`${this.name} применяет заклинание: Огненный шар!`);
+}
+
+
+Elf.prototype.castSpell = function() {
+  const spells = ['Огненный шар', 'Молния', 'Исцеление', 'Ледяной шип'];
+  const randomSpell = spells[Math.floor(Math.random() * spells.length)];
+  console.log(`${this.name} создает новое заклинание: ${randomSpell}`);
+  return randomSpell
+}
+
+const elf1 = new Elf('Эльф', 'Синраэль', 'Эльфиский');
+elf1.spell()
+elf1.castSpell()
+console.log(elf1)
