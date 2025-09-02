@@ -16,7 +16,7 @@ request.addEventListener('load', function() {
 
     const englishEntry = getEntries.find(entry => entry.language.name === 'en');
       if (englishEntry) {
-        console.log(englishEntry.effect);
+        console.log('Описание:', englishEntry.effect);
       }
   })
 })
