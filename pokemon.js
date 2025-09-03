@@ -1,17 +1,19 @@
-const request = new XMLHttpRequest();
-request.open('GET', 'https://pokeapi.co/api/v2/pokemon/ditto');
-request.send();
+function getData(url, error) {
+  return fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`${error} ${response.status}`)
+      }
+      return response.json()
+    })
+}
 
-request.addEventListener('load', function() {
-  const { abilities } = JSON.parse(this.responseText);
-  const getAbility = abilities.map(pokemon => pokemon.ability);
-
-  const request = new XMLHttpRequest();
-  request.open('GET', getAbility[0].url);
-  request.send();
-
-  request.addEventListener('load', function() {
-    const data = JSON.parse(this.responseText);
+getData('https://pokeapi.co/api/v2/pokemon/ditto', 'No Pica-Pica:(')
+  .then(({abilities}) => {
+    const getAbility = abilities.map(pokemon => pokemon.ability);
+    return getData(getAbility[0].url, 'There`s no power here');
+  })
+  .then(data => {
     const getEntries = data.effect_entries;
 
     const englishEntry = getEntries.find(entry => entry.language.name === 'en');
@@ -19,4 +21,9 @@ request.addEventListener('load', function() {
         console.log('Описание:', englishEntry.effect);
       }
   })
+.catch(error => {
+  const errorEl = document.querySelector('body');
+  const divEl = document.createElement('div');
+  errorEl.appendChild(divEl);
+  divEl.innerHTML = error.message;
 })
