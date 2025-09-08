@@ -12,7 +12,7 @@ wrapper.addEventListener('click', (e) => {
 
     count += 1;
     counter.textContent = count;
-    e.target.textContent = 'Нажата';
+    e.target.textContent = 'Нажата!';
 
     lastActiveButton = e.target;
   }
