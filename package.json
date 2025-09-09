@@ -1,0 +1,25 @@
+{
+  "name": "dz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "start": "live-server dist",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "rollup -c -w & live-server dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ViktorovVik/dz-js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ViktorovVik/dz-js/issues"
+  },
+  "homepage": "https://github.com/ViktorovVik/dz-js#readme",
+  "devDependencies": {
+    "rollup": "^4.50.1"
+  }
+}
